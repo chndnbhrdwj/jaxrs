@@ -25,7 +25,7 @@ public class MessageResource {
 
     @GET
     public List<Message> getMessages(@QueryParam("year") int year) {
-        if (year > 0) {
+        if (year < 0) {
             System.out.println("year was not greater than 0");
         }
         return messageService.getAllMessages();
