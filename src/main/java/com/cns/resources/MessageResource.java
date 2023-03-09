@@ -2,6 +2,7 @@ package com.cns.resources;
 
 import java.util.List;
 
+import com.cns.exception.MessageNotFoundException;
 import com.cns.model.Message;
 import com.cns.resources.beans.MessageFilterBeans;
 import com.cns.service.MessageService;
@@ -10,6 +11,7 @@ import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -43,7 +45,11 @@ public class MessageResource {
     @GET
     @Path("/{id}")
     public Message getMessage(@PathParam("id") Long id) {
-        return messageService.getMessage(id);
+        Message message = messageService.getMessage(id);
+        if (message == null) {
+            throw new MessageNotFoundException("message with id " + id + " was not found");
+        }
+        return message;
     }
 
     @PUT
