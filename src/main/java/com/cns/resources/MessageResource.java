@@ -3,8 +3,10 @@ package com.cns.resources;
 import java.util.List;
 
 import com.cns.model.Message;
+import com.cns.resources.beans.MessageFilterBeans;
 import com.cns.service.MessageService;
 
+import jakarta.ws.rs.BeanParam;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -26,6 +28,14 @@ public class MessageResource {
     @GET
     public List<Message> getMessages(@QueryParam("year") int year) {
         if (year < 0) {
+            System.out.println("year was not greater than 0");
+        }
+        return messageService.getAllMessages();
+    }
+
+    @GET
+    public List<Message> getMessagesUsingBeanParam(@BeanParam MessageFilterBeans messageFilterBeans) {
+        if (messageFilterBeans.getYear() < 0) {
             System.out.println("year was not greater than 0");
         }
         return messageService.getAllMessages();
