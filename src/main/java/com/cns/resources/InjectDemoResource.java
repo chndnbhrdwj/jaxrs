@@ -7,7 +7,9 @@ import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.MatrixParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.UriInfo;
 
 @Path("/injectdemo")
 @Consumes(MediaType.TEXT_PLAIN)
@@ -23,5 +25,11 @@ public class InjectDemoResource {
                 + cookieName;
     }
     // @FormParam used to get the form data from html page
+
+    @GET
+    @Path("context")
+    public String getParamsUsingContext(@Context UriInfo uriInfo) {
+        return " uriInfo: " + uriInfo;
+    }
 
 }
