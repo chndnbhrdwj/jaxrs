@@ -2,8 +2,7 @@ package com.cns.model;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
