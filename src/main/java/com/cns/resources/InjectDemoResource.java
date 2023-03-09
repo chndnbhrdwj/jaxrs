@@ -8,6 +8,7 @@ import jakarta.ws.rs.MatrixParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.UriInfo;
 
@@ -28,8 +29,8 @@ public class InjectDemoResource {
 
     @GET
     @Path("context")
-    public String getParamsUsingContext(@Context UriInfo uriInfo) {
-        return " uriInfo: " + uriInfo;
+    public String getParamsUsingContext(@Context UriInfo uriInfo, @Context HttpHeaders httpHeaders) {
+        return " uriInfo: " + uriInfo.toString() + "#### httpHeaders: " + httpHeaders.toString();
     }
 
 }
